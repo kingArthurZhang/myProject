@@ -1,8 +1,8 @@
 <?php
 
-define('APP_NAME', 'HOME')
-define('APP_PATH', './HOME')
+define('APP_NAME', 'Home')
+define('APP_PATH', './Home/')
 define('APP_DEBUG', 'true')
 
-include './ThinkPHP/public/index.php'
+include './ThinkPHP/ThinkPHP.php'
  ?>
