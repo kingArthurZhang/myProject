@@ -19,14 +19,14 @@ defined('THINK_PATH') or exit();
 if(version_compare(PHP_VERSION,'5.2.0','<'))  die('require PHP > 5.2.0 !');
 
 //  版本信息
-define('THINK_VERSION', '3.1');
+define('THINK_VERSION', '3.1.3');
 
 //   系统信息
-if(version_compare(PHP_VERSION,'5.3.0','<')) {
-    set_magic_quotes_runtime(0);
+if(version_compare(PHP_VERSION,'5.4.0','<')) {
+    ini_set('magic_quotes_runtime',0);
     define('MAGIC_QUOTES_GPC',get_magic_quotes_gpc()?True:False);
 }else{
-    define('MAGIC_QUOTES_GPC',True);
+    define('MAGIC_QUOTES_GPC',false);
 }
 define('IS_CGI',substr(PHP_SAPI, 0,3)=='cgi' ? 1 : 0 );
 define('IS_WIN',strstr(PHP_OS, 'WIN') ? 1 : 0 );
@@ -88,7 +88,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . VENDOR_PATH);
 function load_runtime_file() {
     // 加载系统基础函数库
     require THINK_PATH.'Common/common.php';
-    // 读取核心编译文件列表
+    // 读取核心文件列表
     $list = array(
         CORE_PATH.'Core/Think.class.php',
         CORE_PATH.'Core/ThinkException.class.php',  // 异常处理类
@@ -123,9 +123,9 @@ function check_runtime() {
         exit('目录 [ '.RUNTIME_PATH.' ] 不可写！');
     }
     mkdir(CACHE_PATH);  // 模板缓存目录
-    if(!is_dir(LOG_PATH))	mkdir(LOG_PATH);    // 日志目录
-    if(!is_dir(TEMP_PATH))  mkdir(TEMP_PATH);	// 数据缓存目录
-    if(!is_dir(DATA_PATH))	mkdir(DATA_PATH);	// 数据文件目录
+    if(!is_dir(LOG_PATH))   mkdir(LOG_PATH);    // 日志目录
+    if(!is_dir(TEMP_PATH))  mkdir(TEMP_PATH);   // 数据缓存目录
+    if(!is_dir(DATA_PATH))  mkdir(DATA_PATH);   // 数据文件目录
     return true;
 }
 
@@ -152,14 +152,13 @@ function build_runtime_cache($append='') {
         $content .= compile($file);
     }
     // 系统行为扩展文件统一编译
-    if(C('APP_TAGS_ON')) {
-        $content .= build_tags_cache();
-    }
+    $content .= build_tags_cache();
+    
     $alias      = include THINK_PATH.'Conf/alias.php';
     $content   .= 'alias_import('.var_export($alias,true).');';
     // 编译框架默认语言包和配置参数
     $content   .= $append."\nL(".var_export(L(),true).");C(".var_export(C(),true).');G(\'loadTime\');Think::Start();';
-    file_put_contents(RUNTIME_FILE,strip_whitespace('<?php '.$content));
+    file_put_contents(RUNTIME_FILE,strip_whitespace('<?php '.str_replace("defined('THINK_PATH') or exit();",' ',$content)));
 }
 
 // 编译系统行为扩展类库
@@ -220,7 +219,7 @@ function build_first_action() {
 }
 
 // 生成目录安全文件
-function build_dir_secure($dirs='') {
+function build_dir_secure($dirs=array()) {
     // 目录安全写入
     if(defined('BUILD_DIR_SECURE') && BUILD_DIR_SECURE) {
         defined('DIR_SECURE_FILENAME')  or define('DIR_SECURE_FILENAME',    'index.html');

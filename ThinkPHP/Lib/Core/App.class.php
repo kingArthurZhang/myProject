@@ -25,6 +25,11 @@ class App {
      * @return void
      */
     static public function init() {
+        // 页面压缩输出支持
+        if(C('OUTPUT_ENCODE')){
+            $zlib = ini_get('zlib.output_compression');
+            if(empty($zlib)) ob_start('ob_gzhandler');
+        }
         // 设置系统时区
         date_default_timezone_set(C('DEFAULT_TIMEZONE'));
         // 加载动态项目公共文件和配置
@@ -41,50 +46,26 @@ class App {
         define('IS_DELETE',     REQUEST_METHOD =='DELETE' ? true : false);
         define('IS_AJAX',       ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || !empty($_POST[C('VAR_AJAX_SUBMIT')]) || !empty($_GET[C('VAR_AJAX_SUBMIT')])) ? true : false);
 
-        if(defined('GROUP_NAME')) {
-            // 加载分组配置文件
-            if(is_file(CONF_PATH.GROUP_NAME.'/config.php'))
-                C(include CONF_PATH.GROUP_NAME.'/config.php');
-            // 加载分组函数文件
-            if(is_file(COMMON_PATH.GROUP_NAME.'/function.php'))
-                include COMMON_PATH.GROUP_NAME.'/function.php';
-        }
-        // 页面压缩输出支持
-        if(C('OUTPUT_ENCODE')){
-            $zlib = ini_get('zlib.output_compression');
-            if(empty($zlib)) ob_start('ob_gzhandler');
-        }
+        // URL调度结束标签
+        tag('url_dispatch');         
         // 系统变量安全过滤
         if(C('VAR_FILTERS')) {
             $filters    =   explode(',',C('VAR_FILTERS'));
             foreach($filters as $filter){
                 // 全局参数过滤
-                $_POST  =   array_map($filter,$_POST);
-                $_GET   =   array_map($filter,$_GET);
+                array_walk_recursive($_POST,$filter);
+                array_walk_recursive($_GET,$filter);
             }
         }
 
-        /* 获取模板主题名称 */
-        $templateSet =  C('DEFAULT_THEME');
-        if(C('TMPL_DETECT_THEME')) {// 自动侦测模板主题
-            $t = C('VAR_TEMPLATE');
-            if (isset($_GET[$t])){
-                $templateSet = $_GET[$t];
-            }elseif(cookie('think_template')){
-                $templateSet = cookie('think_template');
-            }
-            // 主题不存在时仍改回使用默认主题
-            if(!is_dir(TMPL_PATH.$templateSet))
-                $templateSet = C('DEFAULT_THEME');
-            cookie('think_template',$templateSet);
-        }
-        /* 模板相关目录常量 */
-        define('THEME_NAME',   $templateSet);                  // 当前模板主题名称
-        $group   =  defined('GROUP_NAME')?GROUP_NAME.'/':'';
-        define('THEME_PATH',   TMPL_PATH.$group.(THEME_NAME?THEME_NAME.'/':''));
-        define('APP_TMPL_PATH',__ROOT__.'/'.APP_NAME.(APP_NAME?'/':'').basename(TMPL_PATH).'/'.$group.(THEME_NAME?THEME_NAME.'/':''));
-        C('TEMPLATE_NAME',THEME_PATH.MODULE_NAME.(defined('GROUP_NAME')?C('TMPL_FILE_DEPR'):'/').ACTION_NAME.C('TMPL_TEMPLATE_SUFFIX'));
-        C('CACHE_PATH',CACHE_PATH.$group);
+        if(C('REQUEST_VARS_FILTER')){
+			// 全局安全过滤
+			array_walk_recursive($_GET,		'think_filter');
+			array_walk_recursive($_POST,	'think_filter');
+			array_walk_recursive($_REQUEST,	'think_filter');
+		}
+
+        C('LOG_PATH',realpath(LOG_PATH).'/');
         //动态配置 TMPL_EXCEPTION_FILE,改为绝对地址
         C('TMPL_EXCEPTION_FILE',realpath(C('TMPL_EXCEPTION_FILE')));
         return ;
@@ -100,7 +81,7 @@ class App {
             $module  =  false;
         }else{
             //创建Action控制器实例
-            $group   =  defined('GROUP_NAME') ? GROUP_NAME.'/' : '';
+            $group   =  defined('GROUP_NAME') && C('APP_GROUP_MODE')==0 ? GROUP_NAME.'/' : '';
             $module  =  A($group.MODULE_NAME);
         }
 
@@ -126,7 +107,6 @@ class App {
         }
         // 获取当前操作名 支持动态路由
         $action = C('ACTION_NAME')?C('ACTION_NAME'):ACTION_NAME;
-        C('TEMPLATE_NAME',THEME_PATH.MODULE_NAME.(defined('GROUP_NAME')?C('TMPL_FILE_DEPR'):'/').$action.C('TMPL_TEMPLATE_SUFFIX'));
         $action .=  C('ACTION_SUFFIX');
         try{
             if(!preg_match('/^[A-Za-z](\w)*$/',$action)){
@@ -148,7 +128,7 @@ class App {
                 if(C('URL_PARAMS_BIND') && $method->getNumberOfParameters()>0){
                     switch($_SERVER['REQUEST_METHOD']) {
                         case 'POST':
-                            $vars    =  $_POST;
+                            $vars    =  array_merge($_GET,$_POST);
                             break;
                         case 'PUT':
                             parse_str(file_get_contents('php://input'), $vars);
@@ -167,6 +147,7 @@ class App {
                             throw_exception(L('_PARAM_ERROR_').':'.$name);
                         }
                     }
+                    array_walk_recursive($args,'think_filter');
                     $method->invokeArgs($module,$args);
                 }else{
                     $method->invoke($module);
@@ -208,8 +189,6 @@ class App {
         App::exec();
         // 项目结束标签
         tag('app_end');
-        // 保存日志记录
-        if(C('LOG_RECORD')) Log::save();
         return ;
     }
 
