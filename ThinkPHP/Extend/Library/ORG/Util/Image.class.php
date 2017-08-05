@@ -196,7 +196,7 @@ class Image {
               //png和gif的透明处理 by luofei614
             if('png'==$type){
                 imagealphablending($thumbImg, false);//取消默认的混色模式（为解决阴影为绿色的问题）
-                imagesavealpha($thumbImg,true);//设定保存完整的 alpha 通道信息（为解决阴影为绿色的问题）    
+                imagesavealpha($thumbImg,true);//设定保存完整的 alpha 通道信息（为解决阴影为绿色的问题）
             }elseif('gif'==$type){
                 $trnprt_indx = imagecolortransparent($srcImg);
                  if ($trnprt_indx >= 0) {
@@ -300,7 +300,7 @@ class Image {
         }
         return false;
     }
-    
+
     /**
      * 根据给定的字符串生成图像
      * @static
@@ -371,7 +371,7 @@ class Image {
     static function buildImageVerify($length=4, $mode=1, $type='png', $width=48, $height=22, $verifyName='verify') {
         import('ORG.Util.String');
         $randval = String::randString($length, $mode);
-        session($verifyName, md5($randval));
+        session($verifyName, md5(strtolower($randval)));
         $width = ($length * 10 + 10) > $width ? $length * 10 + 10 : $width;
         if ($type != 'gif' && function_exists('imagecreatetruecolor')) {
             $im = imagecreatetruecolor($width, $height);

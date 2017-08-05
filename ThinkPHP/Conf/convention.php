@@ -59,11 +59,11 @@ return  array(
     /* 数据库设置 */
     'DB_TYPE'               => 'mysql',     // 数据库类型
     'DB_HOST'               => 'localhost', // 服务器地址
-    'DB_NAME'               => '',          // 数据库名
-    'DB_USER'               => 'root',      // 用户名
-    'DB_PWD'                => '',          // 密码
+    'DB_NAME'               => 'myProject',          // 数据库名
+    'DB_USER'               => 'arthur',      // 用户名
+    'DB_PWD'                => 'Arthur1022',          // 密码
     'DB_PORT'               => '',        // 端口
-    'DB_PREFIX'             => 'think_',    // 数据库表前缀
+    'DB_PREFIX'             => '',    // 数据库表前缀
     'DB_FIELDTYPE_CHECK'    => false,       // 是否进行字段类型检查
     'DB_FIELDS_CACHE'       => true,        // 启用字段缓存
     'DB_CHARSET'            => 'utf8',      // 数据库编码默认采用utf8
@@ -90,7 +90,7 @@ return  array(
     'ERROR_MESSAGE'         => '页面错误！请稍后再试～',//错误显示信息,非调试模式有效
     'ERROR_PAGE'            => '',	// 错误定向页面
     'SHOW_ERROR_MSG'        => false,    // 显示错误信息
-    'TRACE_EXCEPTION'       => false,   // TRACE错误信息是否抛异常 针对trace方法 
+    'TRACE_EXCEPTION'       => false,   // TRACE错误信息是否抛异常 针对trace方法
 
     /* 日志设置 */
     'LOG_RECORD'            => false,   // 默认不记录日志
@@ -141,5 +141,7 @@ return  array(
 
     'OUTPUT_ENCODE'         =>  false, // 页面压缩输出
     'HTTP_CACHE_CONTROL'    =>  'private', // 网页缓存控制
+    'TMPL_L_DELIM'=>'<{',
+    'TMPL_R_DELIM'=>'}>',
 
 );

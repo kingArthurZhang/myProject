@@ -13,18 +13,18 @@
         <div class="login">
             <form action="">
                 <div class="form-group">
-                    <label for="">User Name:</label>
-                    <input type="text" class="form-control">
+                    <label for="__URL__/check" method='post'>User Name:</label>
+                    <input type="text" class="form-control" name="useename">
                 </div>
                 <div class="form-group">
                     <label for="">Password:</label>
-                    <input type="Password" class="form-control">
+                    <input type="Password" class="form-control" name="password">
                 </div>
                 <div class="form-group">
                     <label for="">Verify Code:</label>
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="fcode">
                         </div>
                         <div class="col-md-2">
                             <img class="verify" src="__URL__/verify" onclick="this.src='__URL__/verify/rand='+Math.random()">

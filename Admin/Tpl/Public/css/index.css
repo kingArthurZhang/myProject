@@ -7,10 +7,23 @@
     padding: 30px;
 }
 
-.verfit{
+.verify{
     cursor: pointer;
 }
 
 .sign{
     margin-top: 13px;
+}
+
+#row{
+    height: 500px;
+}
+
+.left{
+    border-right: 1px solid #ccc;
+    height: 100%;
+}
+
+.content{
+    resize: none;
 }
