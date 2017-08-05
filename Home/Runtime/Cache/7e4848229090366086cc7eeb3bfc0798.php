@@ -48,31 +48,31 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                  <img src="../Public/images/a.jpg" alt="...">
+                  <img src="../Public/images/k.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
                 </div>
                 <div class="item">
-                  <img src="../Public/images/b.jpg" alt="...">
+                  <img src="../Public/images/j.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
                 </div>
                 <div class="item">
-                  <img src="../Public/images/c.jpg" alt="...">
+                  <img src="../Public/images/i.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
                 </div>
                 <div class="item">
-                  <img src="../Public/images/d.jpg" alt="...">
+                  <img src="../Public/images/l.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
                 </div>
                 <div class="item">
-                  <img src="../Public/images/e.jpg" alt="...">
+                  <img src="../Public/images/m.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
@@ -93,44 +93,20 @@
             <div class="line"></div>
 
             <!-- Display -->
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Past</h4>
-                </div>
-                <div class="panel-body">
-                    <img src="../Public/images/f.jpg">
-                    <p>It all started the summer before second grade when our moving van pulled into her neighborhood. And since we're now about done with the eighth grade, that, my friend, makes more than half a decade of strategic avoidance and social discomfort.</p>
-                </div>
-                <div class="panel-footer">
-                    <span class="'label label-danger">Last Edited Time:</span><span>2017-8-4 11:12:20</span>
-                </div>
-            </div>
+            <?php if(is_array($rows)): $i = 0; $__LIST__ = $rows;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($i % 2 );++$i;?><div class="panel panel-primary">
+                  <div class="panel-heading">
+                      <h4><?php echo ($row['title']); ?></h4>
+                  </div>
+                  <div class="panel-body">
+                      <?php echo (htmlspecialchars_decode($row['content'])); ?>
+                  </div>
+                  <div class="panel-footer">
+                      <span class="'label label-primary">Author:</span><span><?php echo ($row['username']); ?></span>
+                      <span class="'label label-danger">Last Edited Time:</span><span><?php echo (date('Y-m-d H:i:s',$row['time'])); ?></span>
+                  </div>
+              </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
-             <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Present</h4>
-                </div>
-                <div class="panel-body">
-                    <img src="../Public/images/g.jpg">
-                    <p>It all started the summer before second grade when our moving van pulled into her neighborhood. And since we're now about done with the eighth grade, that, my friend, makes more than half a decade of strategic avoidance and social discomfort.</p>
-                    <div class="panel-footer">
-                    <span class="'label label-danger">Last Edited Time:</span><span>2017-8-4 11:12:20</span>
-                </div>
-                </div>
-            </div>
 
-             <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Future</h4>
-                </div>
-                <div class="panel-body">
-                    <img src="../Public/images/h.jpg">
-                    <p>It all started the summer before second grade when our moving van pulled into her neighborhood. And since we're now about done with the eighth grade, that, my friend, makes more than half a decade of strategic avoidance and social discomfort.</p>
-                    <div class="panel-footer">
-                    <span class="'label label-danger">Last Edited Time:</span><span>2017-8-4 11:12:20</span>
-                </div>
-                </div>
-            </div>
             <div class="footer">
                 <span class="pull-left">www.kingarthurzhang.com</span>
                 <span class="pull-right">Talk is cheap,show me the code.</span>

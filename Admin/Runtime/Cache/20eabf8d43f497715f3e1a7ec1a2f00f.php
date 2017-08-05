@@ -7,6 +7,7 @@
     <script src="__PUBLIC__/bs/js/jquery.min.js"></script>
     <script src="__PUBLIC__/bs/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../Public/css/index.css">
+    <script type="text/javascript" src="__PUBLIC__/kd/kindeditor-all-min.js"></script>
     <script>
         menu='<?php echo ($_GET[menu]); ?>'?'<?php echo ($_GET[menu]); ?>':'user';
     </script>
