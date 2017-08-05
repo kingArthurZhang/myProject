@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="">Arthur And Rachel</a>
+              <a class="navbar-brand" href="">Arthur's World</a>
             </div>
             <nav class="menu">
 
@@ -35,7 +35,7 @@
             <div class="line"></div>
 
         <!-- SlideShow -->
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval='2000'>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval='1000'>
               <!-- Indicators -->
               <ol class="carousel-indicators">
                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -48,31 +48,31 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                  <img src="../Public/images/k.jpg" alt="...">
+                  <img src="../Public/images/o.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
                 </div>
                 <div class="item">
-                  <img src="../Public/images/j.jpg" alt="...">
+                  <img src="../Public/images/n.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
                 </div>
                 <div class="item">
-                  <img src="../Public/images/i.jpg" alt="...">
+                  <img src="../Public/images/q.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
                 </div>
                 <div class="item">
-                  <img src="../Public/images/l.jpg" alt="...">
+                  <img src="../Public/images/p.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
                 </div>
                 <div class="item">
-                  <img src="../Public/images/m.jpg" alt="...">
+                  <img src="../Public/images/t.jpg" alt="...">
                   <div class="carousel-caption">
                     ...
                   </div>
@@ -103,12 +103,11 @@
                   <div class="panel-footer">
                       <span class="'label label-primary">Author:</span><span><?php echo ($row['username']); ?></span>
                       <span class="'label label-danger">Last Edited Time:</span><span><?php echo (date('Y-m-d H:i:s',$row['time'])); ?></span>
-                  </div>
-              </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                  </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 
             <div class="footer">
-                <span class="pull-left">www.kingarthurzhang.com</span>
+                <span class="pull-left">www.kingArthurZhang.com</span>
                 <span class="pull-right">Talk is cheap,show me the code.</span>
             </div>
     </div>

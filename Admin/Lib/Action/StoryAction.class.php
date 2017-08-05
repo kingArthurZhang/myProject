@@ -10,7 +10,6 @@ class StoryAction extends Action {
         $story->create();
         $story->content=htmlspecialchars($_POST['content']);
         $story->time=time();
-
         if($story->add()){
             $this->success('Congratulations!',U(add));
         }
