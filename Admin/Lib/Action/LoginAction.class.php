@@ -13,14 +13,14 @@ class LoginAction extends Action {
         $password=md5($_POST['password']);
 
         if ($fcode != $vcode) {
-            $this->error('There is something wrong with the verify code,please try again.',U('index'));
+            $this->error("There is something wrong with the verify code,please try again.",U('index'));
         }else{
             $where="username='{$username}' and password='{$password}' and isadmin=1";
             $row=$user->where($where)->find();
             if ($row) {
                 $_SESSION['admin_username']=$username;
                 $_SESSION['admin_login']=1;
-                $this->success('Congratulation!You have logged in!',U('Index/index'));
+                $this->success("Congratulations! {$username} have logged in!",U('Index/index'));
             }else{
                 $this->error('You are not allowed to log in!',U('index'));
             }
@@ -38,6 +38,6 @@ class LoginAction extends Action {
 
     public function verify(){
          import('ORG.Util.Image');
-         Image::buildImageVerify(4,1,"png",70,30);
+         Image::buildImageVerify(4,5,"png",70,30);
     }
 }
