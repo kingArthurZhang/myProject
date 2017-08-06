@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="__APP__/Index/index">Back Page</a>
+              <a class="navbar-brand" href="__ROOT__/admin.php/Index/index">Back Page</a>
             </div>
             <nav class="menu">
 
@@ -46,7 +46,7 @@
                 </div>
                  <div class="list-group story">
                     <a href="javascript:" class="list-group-item active">Write Stories</a>
-                    <a href="__ACTION__/menu/story" class="list-group-item">View Stories</a>
+                    <a href="__ROOT__/index.php/Index/index" class="list-group-item">View Stories</a>
                     <a href="__APP__/Story/add" class="list-group-item">Add Stories</a>
                 </div>
             </div>

@@ -10,11 +10,26 @@
 </head>
 <body>
     <div class="container">
+
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="__ROOT__/index.php/index/index">Home Page</a>
+            </div>
+        </nav>
+
+            <div class="line"></div>
+
         <div class="login">
-            <form action="">
+            <form method="post" action="__URL__/check">
                 <div class="form-group">
                     <label for="__URL__/check" method='post'>User Name:</label>
-                    <input type="text" class="form-control" name="useename">
+                    <input type="text" class="form-control" name="username">
                 </div>
                 <div class="form-group">
                     <label for="">Password:</label>
@@ -32,7 +47,7 @@
                     </div>
                         <div class="form-group sign">
                             <input type="submit" value="Sign in" class="btn btn-primary">
-                            <input type="submit" value="Cancel" class="btn btn-danger">
+                            <input type="reset" value="Cancel" class="btn btn-danger">
                         </div>
             </form>
         </div>
