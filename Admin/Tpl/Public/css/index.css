@@ -27,3 +27,7 @@
 .content{
     resize: none;
 }
+
+th{
+    text-align:center;
+}

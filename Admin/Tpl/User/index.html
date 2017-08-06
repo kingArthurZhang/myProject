@@ -1,0 +1,43 @@
+<extend name='Index:index'/>
+<block name='right'>
+    <div class="container">
+        <div class="panel">
+                <table class="table table-striped table-hover table-bordered text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Time</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <volist name='rows' id='row'>
+                        <tr>
+                            <td><{$row['id']}></td>
+                            <td><{$row['username']}></td>
+                            <td><{$row['time']|date='Y-m-d',###}></td>
+                            <td>
+                            <a href="__URL__/edit/id/<{$row['id']}>">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            </td>
+
+                            <td>
+                            <a href="__URL__/delete/id/<{$row['id']}>">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                            </td>
+
+                        </tr>
+                    </volist>
+                </table>
+
+                <div class="panel-body">
+
+                </div>
+
+                <div class="panel-footer">
+
+                </div>
+        </div>
+    </div>
+</block>

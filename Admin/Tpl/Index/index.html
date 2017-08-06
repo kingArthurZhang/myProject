@@ -41,8 +41,8 @@
             <div class="col-md-2 left">
                 <div class="list-group user">
                     <a href="javascript:" class="list-group-item active">Manage Users</a>
-                    <a href="__ACTION__/menu/user" class="list-group-item">View Users</a>
-                    <a href="__ACTION__/menu/user" class="list-group-item">Add User</a>
+                    <a href="__APP__/User/index" class="list-group-item">View Users</a>
+                    <a href="__APP__/User/add" class="list-group-item">Add User</a>
                 </div>
                  <div class="list-group story">
                     <a href="javascript:" class="list-group-item active">Write Stories</a>

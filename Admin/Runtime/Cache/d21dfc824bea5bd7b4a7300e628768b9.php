@@ -52,12 +52,45 @@
             </div>
             <div class="col-md-10 right">
                 
-                    <div class="jumbotron">
-                        <h3>Welcome to Arthur's World!</h3>
-                        <p>This is a place for Arthur and Rachel's love story,they fell in love in the Christmas of 2016,and they want to record their stories.</p>
-                        <a href="__ROOT__/index.php/Index/index" class="btn btn-primary" target="_blank">Home</a>
-                    </div>
-                
+    <div class="container">
+        <div class="panel">
+                <table class="table table-striped table-hover table-bordered text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Time</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <?php if(is_array($rows)): $i = 0; $__LIST__ = $rows;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($i % 2 );++$i;?><tr>
+                            <td><?php echo ($row['id']); ?></td>
+                            <td><?php echo ($row['username']); ?></td>
+                            <td><?php echo (date('Y-m-d',$row['time'])); ?></td>
+                            <td>
+                            <a href="__URL__/edit/id/<?php echo ($row['id']); ?>">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            </td>
+
+                            <td>
+                            <a href="__URL__/delete/id/<?php echo ($row['id']); ?>">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                            </td>
+
+                        </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                </table>
+
+                <div class="panel-body">
+
+                </div>
+
+                <div class="panel-footer">
+
+                </div>
+        </div>
+    </div>
+
             </div>
         </div>
     </div>
