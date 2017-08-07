@@ -54,33 +54,23 @@
                 
     <div class="container">
         <div class="panel">
-                <table class="table table-striped table-hover table-bordered text-center">
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Time</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                    <?php if(is_array($rows)): $i = 0; $__LIST__ = $rows;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($i % 2 );++$i;?><tr>
-                            <td><?php echo ($row['id']); ?></td>
-                            <td><?php echo ($row['username']); ?></td>
-                            <td><?php echo (date('Y-m-d',$row['time'])); ?></td>
-                            <td>
-                            <a href="__URL__/edit/id/<?php echo ($row['id']); ?>">
-                            <span class="glyphicon glyphicon-edit"></span>
-                            </a>
-                            </td>
+        <form action="__URL__/insert" method="post">
+            <div class="form-group">
+                <label>Username:</label>
+                <input type="text" name="username" class="form-control" placeholder="username">
+            </div>
 
-                            <td>
-                            <a href="__URL__/delete/id/<?php echo ($row['id']); ?>">
-                            <span class="glyphicon glyphicon-trash"></span>
-                            </a>
-                            </td>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="text" name="password" class="form-control" placeholder="password">
+            </div>
 
-                        </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                </table>
 
+            <div class="form-group">
+                <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                <input type="reset" name="reset" class="btn btn-danger" value="Cancel">
+            </div>
+        </form>
         </div>
     </div>
 

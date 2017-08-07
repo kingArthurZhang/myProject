@@ -6,6 +6,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Username</th>
+                        <th>Title</th>
                         <th>Time</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -14,6 +15,7 @@
                         <tr>
                             <td><{$row['id']}></td>
                             <td><{$row['username']}></td>
+                            <td><{$row['title']}></td>
                             <td><{$row['time']|date='Y-m-d',###}></td>
                             <td>
                             <a href="__URL__/edit/id/<{$row['id']}>">

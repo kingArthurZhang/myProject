@@ -58,6 +58,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Username</th>
+                        <th>Title</th>
                         <th>Time</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -65,6 +66,7 @@
                     <?php if(is_array($rows)): $i = 0; $__LIST__ = $rows;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($i % 2 );++$i;?><tr>
                             <td><?php echo ($row['id']); ?></td>
                             <td><?php echo ($row['username']); ?></td>
+                            <td><?php echo ($row['title']); ?></td>
                             <td><?php echo (date('Y-m-d',$row['time'])); ?></td>
                             <td>
                             <a href="__URL__/edit/id/<?php echo ($row['id']); ?>">

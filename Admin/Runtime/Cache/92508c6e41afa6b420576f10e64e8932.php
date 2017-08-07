@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../Public/css/index.css">
     <script type="text/javascript" src="__PUBLIC__/kd/kindeditor-all-min.js"></script>
     <script>
-        menu='<?php echo ($_GET[menu]); ?>'?'<?php echo ($_GET[menu]); ?>':'user';
+        menu='<?php echo ($_GET[menu]); ?>'?'<?php echo ($_GET[menu]); ?>':'story';
     </script>
     <script type="text/javascript" src="../Public/js/index.js"></script>
 </head>
@@ -45,8 +45,8 @@
                     <a href="__APP__/User/add" class="list-group-item">Add User</a>
                 </div>
                  <div class="list-group story">
-                    <a href="javascript:" class="list-group-item active">Write Stories</a>
-                    <a href="__ROOT__/index.php/Index/index" class="list-group-item">View Stories</a>
+                    <a href="javascript:" class="list-group-item active">Manage Stories</a>
+                    <a href="__APP__/Story/index" class="list-group-item">View Stories</a>
                     <a href="__APP__/Story/add" class="list-group-item">Add Stories</a>
                 </div>
             </div>
@@ -67,7 +67,6 @@
             <label for="">Content:</label>
             <textarea name="content" rows="13" class="form-control content"></textarea>
         </div>
-
         <div class="form-group">
             <input type="submit" value="Push" class="btn btn-primary">
             <input type="reset" value="Cancel" class="btn btn-danger">
