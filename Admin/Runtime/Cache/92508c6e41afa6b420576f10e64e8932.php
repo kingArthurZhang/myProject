@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="__ROOT__/admin.php/Index/index">Back Page</a>
+              <a class="navbar-brand" href="__ROOT__/index.php/Index/index">Home Page</a>
             </div>
             <nav class="menu">
 
